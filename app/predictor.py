@@ -1,4 +1,4 @@
-from utlis import *
+from app.utlis import *
 
 
 class Predictor:

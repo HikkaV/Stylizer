@@ -4,8 +4,8 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 from fastapi import FastAPI, File
 import numpy as np
 import logging
-from predictor import Predictor
-from utlis import to_bytes, BytesIO, Image
+from app.predictor import Predictor
+from app.utlis import to_bytes, BytesIO, Image
 logging.basicConfig(format='[%(levelname).1s %(asctime)s %(module)s:%(lineno)d@%(funcName)s] %(message)s',
                     datefmt='%m/%d/%Y %H:%M:%S')
 predictor = Predictor()
