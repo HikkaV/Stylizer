@@ -16,8 +16,9 @@ app = FastAPI()
 def stylize(content_image: bytes = File(...), style_image: bytes = File(...)):
     """
 
-    :param content_image: image which content should be used in generated one
-    :param style_image: image which style should be used in generated one
+    - :param content_image: image which content should be used in generated one
+    - :param style_image: image which style should be used in generated one
+
     :return: resulting image in bytes array with base64 encoding
     """
     result = None
