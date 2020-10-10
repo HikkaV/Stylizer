@@ -1,7 +1,7 @@
 import os
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
-from fastapi import FastAPI, File
+from fastapi import FastAPI
 import numpy as np
 import logging
 from app.predictor import Predictor
@@ -34,10 +34,10 @@ def stylize(body: Body):
     content_image, style_image = body.content_image, body.style_image
     try:
         content_image = np.array(Image.open(BytesIO(base64.b64decode(content_image))))
-        print('Shape of content image : {}'.format(content_image.shape))
+        logging.info('Shape of content image : {}'.format(content_image.shape))
         style_image = np.array(Image.open(BytesIO(base64.b64decode(style_image))))
-        print('Shape of style image : {}'.format(content_image.shape))
-        print('Got content and style images!')
+        logging.info('Shape of style image : {}'.format(content_image.shape))
+        logging.info('Got content and style images!')
         result = predictor.predict(content_image, style_image)[0]
         result = to_bytes(result)
         logging.info('Made stylization.')
