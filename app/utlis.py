@@ -5,6 +5,7 @@ from PIL import Image
 import numpy as np
 import base64
 
+
 def crop_center(image):
     """Returns a cropped square image."""
     shape = image.shape
@@ -15,6 +16,7 @@ def crop_center(image):
         image, offset_y, offset_x, new_shape, new_shape)
     return image
 
+
 def to_bytes(image):
     with BytesIO() as output:
         with Image.fromarray(image) as img:
@@ -22,8 +24,11 @@ def to_bytes(image):
         data = output.getvalue()
     return base64.b64encode(data)
 
+
 def process(image, image_size=(256, 256)):
-    image = image.astype(np.float32)[np.newaxis,...]
+    if image.shape[-1] == 4:
+        image = image[:, :, :3]
+    image = image.astype(np.float32)[np.newaxis, ...]
     if image.max() > 1.0:
         image = image / 255.
     if len(image.shape) == 3:

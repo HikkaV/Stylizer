@@ -34,14 +34,14 @@ def stylize(body: Body):
     content_image, style_image = body.content_image, body.style_image
     try:
         content_image = np.array(Image.open(BytesIO(base64.b64decode(content_image))))
-        logging.info('Shape of content image : {}'.format(content_image.shape))
+        print('Shape of content image : {}'.format(content_image.shape))
         style_image = np.array(Image.open(BytesIO(base64.b64decode(style_image))))
-        logging.info('Shape of style image : {}'.format(content_image.shape))
+        print('Shape of style image : {}'.format(content_image.shape))
         logging.info('Got content and style images!')
         result = predictor.predict(content_image, style_image)[0]
         result = to_bytes(result)
         logging.info('Made stylization.')
     except Exception as e:
-        logging.error('Error : ' + str(e))
-    logging.info('Number of bytes to return : {}'.format(len(result)))
+        print('Error : ' + str(e))
+    print('Number of bytes to return : {}'.format(len(result)))
     return result
