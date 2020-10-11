@@ -43,4 +43,5 @@ def stylize(body: Body):
         logging.info('Made stylization.')
     except Exception as e:
         logging.error('Error : ' + str(e))
+    logging.info('Number of bytes to return : {}'.format(len(result)))
     return result
